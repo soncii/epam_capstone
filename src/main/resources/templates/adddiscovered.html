@@ -1,0 +1,49 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Modify</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body style=" background-image: url('https://img.freepik.com/free-vector/clean-medical-background_53876-97927.jpg?w=2000 ');">
+<div class="container" style="background: #A5E0D2; border: 3px solid #000000; margin-top: 7%">
+    <h1>Add Disease discovery record</h1>
+    <form action="#" th:action="@{/save/discovered}" th:object="${Discover}"
+          method="POST">
+        <select  class="form-control-sm" id="disease_code" name="disease_code" required>
+            <option value="">Select Disease</option>
+            <div class="col-sm-3" th:object="${Disease}">
+                <option th:each="d : ${Disease}"
+                        th:value="${d.getDiseaseCode()}"
+                        th:text="${d.getDiseaseCode()}"></option>
+            </div>
+        </select>
+        <br>
+        <br>
+        <select class="form-control-sm" id="cname" name="cname" required>
+            <option value="">Select Country</option>
+            <div class="col-sm-3" th:object="${Countries}">
+                <option th:each="c : ${Countries}"
+                        th:value="${c.id}"
+                        th:text="${c.id}"></option>
+            </div>
+        </select>
+        <br>
+        <br>
+        <h6>Provide first encountered date:</h6>
+        <input type="date" th:field="*{date}"
+               class="form-control mb-4 col-4" required>
+
+        <button type="submit" class="btn btn-info col-2">Add</button>
+    </form>
+
+    <form action="/see/discovered/0
+">
+        <button type="submit" class="btn btn-primary">See History</button>
+    </form>
+</div>
+
+</body>
+</html>

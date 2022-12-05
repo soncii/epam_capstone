@@ -1,0 +1,70 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>This is the title of the webpage!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+
+</head>
+<body style="background-image: url('https://img.freepik.com/free-vector/clean-medical-background_53876-97927.jpg?w=2000 ')
+;background-repeat: no-repeat;background-attachment: fixed;
+  background-size: cover;">
+<div class="text-center" style="position:absolute; top:0;right: 10px">
+<form th:action="${'/modify/user/' + email}">
+    <button type="submit" class="btn btn-primary w-50">Change my personal info</button>
+</form>
+<form action="/logout">
+    <button type="submit" class="btn btn-danger w-50">Logout</button>
+</form>
+</div>
+
+
+<div class="text-center mw-50" >
+<h1>Disease Registry System</h1>
+    <br>
+</div>
+<div style="box-sizing: border-box;
+margin-top: 3%;
+position: center;
+width: 519px;
+height: 630px;
+margin-left:auto;
+margin-right:auto;
+vertical-align: middle;
+background: #A5E0D2;
+border: 3px solid #000000;" class="text-center  ">
+    <div class="row align-items-center " style="margin-top: 120px;" >
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <form action="/register/doctor" method="get">
+                <button type="submit" class="btn btn-secondary w-50">Add doctor</button>
+            </form>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <form action="/register/publicservant" method="get">
+                <button type="submit" class="btn btn-secondary w-50">Add Public Servant</button>
+            </form>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <form action="/see/users/0">
+                <button type="submit" class="btn btn-secondary w-50 w-50">See users</button>
+            </form>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <form action="/see/countries/0">
+                <button type="submit" class="btn btn-secondary w-50">See Countries</button>
+            </form>
+        </div>
+        <form action="/diseases/0">
+            <button type="submit" class="btn btn-secondary w-50">See diseases</button>
+        </form>
+        <form action="/records/0">
+            <button type="submit" class="btn btn-secondary w-50">See records</button>
+        </form>
+        <form action="/see/discovered/0">
+            <button type="submit" class="btn btn-secondary w-50">Discovered</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

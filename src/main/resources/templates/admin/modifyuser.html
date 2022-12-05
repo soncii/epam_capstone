@@ -1,0 +1,49 @@
+
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Employee Management System</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body style=" background-image: url('https://img.freepik.com/free-vector/clean-medical-background_53876-97927.jpg?w=2000 ');">
+<div class="container" style="background: #A5E0D2; border: 3px solid #000000">
+    <h1>Update user information</h1>
+
+    <form action="#" th:action="@{/save/user}" th:object="${User}"
+          method="POST">
+        <input type="email" th:field="*{id}" th:placeholder="${email}"
+               th:value="${email}" class="form-control mb-4 col-4" readonly>
+        <input type="password" th:field="*{password}" placeholder="password"
+               class="form-control mb-4 col-4">
+        <input type="text" th:field="*{name}" placeholder="User name" class="form-control mb-4 col-4" required>
+        <input type="text" th:field="*{surname}" placeholder="User surname" class="form-control mb-4 col-4" required>
+        <input type="text" th:field="*{salary}" placeholder="User salary" class="form-control mb-4 col-4" required>
+        <input type="text" th:field="*{phone}" placeholder="User phone" class="form-control mb-4 col-4" required>
+        <select class="form-control-sm" id="cname" name="cname" required>
+            <div class="col-sm-3" th:object="${Countries}">
+                <option th:each="c : ${Countries}"
+                        th:value="${c.getId()}"
+                        th:text="${c.getId()}"></option>
+            </div>
+        </select>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-info col-2">Save
+            User</button>
+    </form>
+
+    <hr>
+
+    <form sec:authorize="hasRole('ROLE_ADMIN')" action="/see/users/0">
+        <button type="submit" class="btn btn-primary">See users</button>
+    </form>
+    <form action="/">
+        <button type="submit" class="btn btn-primary">Main Page</button>
+    </form>
+</div>
+
+</body>
+</html>

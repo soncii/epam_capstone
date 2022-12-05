@@ -1,0 +1,62 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Countries</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+</head>
+<body style=" background-image: url('https://img.freepik.com/free-vector/clean-medical-background_53876-97927.jpg?w=2000 ');">
+<div style="position:absolute; top:15px;right: 30px; text-align: center">
+<form action="/">
+    <button type="submit" class="btn btn-primary">Main Page</button>
+</form>
+<form action="/logout"  method="get" >
+    <button type = "submit" class="btn btn-danger">Logout</button>
+</form>
+</div>
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <h1 class="align-content-center">The list of countries</h1>
+        <table class="table table-responsive" style="background: #A5E0D2">
+            <thead>
+            <tr>
+                <th scope="col">Country Name </th>
+                <th scope="col">Population </th>
+                <th scope="col">Update </th>
+            </tr>
+            <tr th:each="c:${Countries}">
+                <td th:text="${c.getId()}"></td>
+                <td th:text="${c.getPopulation()}"></td>
+                <td>
+                    <div class="btn-group">
+                        <form action="#" th:action="@{'/modify/country/' + ${c.id}}" method="GET">
+                            <button type="submit" class="btn btn-primary">Modify</button>
+                        </form>
+                        <form action="#" th:action="@{'/delete/country/' + ${c.id}}" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            </thead>
+        </table>
+
+        <div class="d-flex flex-row-reverse">
+            <form class="float-right" action="/add/country">
+                <button type="submit" class="btn btn-primary">Add country</button>
+            </form>
+        </div>
+        <div class="btn-group">
+            <form th:if="${PrevPage}>=0" th:action="${'/see/countries/'+PrevPage}">
+                <button type="submit" class="btn btn-primary">Previous Page</button>
+            </form>
+            <form th:if="${hasNextPage}" th:action="${'/see/countries/'+NextPage}">
+                <button type="submit" class="btn btn-primary">Next Page</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
